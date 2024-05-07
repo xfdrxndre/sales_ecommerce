@@ -102,12 +102,10 @@ SELECT
     ROUND(SUM(after_discount)::NUMERIC, 0) AS transaksi
 FROM
 	order_detail AS od
-left JOIN 
+JOIN 
 	sku_detail AS sd ON od.sku_id = sd.id
 WHERE
-	order_date BETWEEN '2022-01-01' and '2022-12-31' AND
-    is_valid = 1 AND
-    sd.category = 'Mobiles & Tablets' AND
+	is_valid = 1 AND
     CASE
     	WHEN LOWER(sku_name) LIKE '%samsung%' THEN TRUE
         WHEN LOWER(sku_name) LIKE '%apple%' OR LOWER(sku_name) LIKE '%iphone%' OR LOWER(sku_name) LIKE '%macbook%' THEN TRUE
